@@ -1,5 +1,20 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, output } from '@angular/core';
 // import { input, computed } from '@angular/core';
+
+// APPROACH 2 TO ACCEPT AN OBJECT: CAN DEFINE OBJECTS AS WELL AS OTHER DATA TYPES
+// type User = {
+//   id: string;
+//   avatar: string;
+//   name: string;
+// }
+
+// APPROACH 3 : CAN ONLY DEFINE OBJECTS
+interface User {
+  id: string;
+  avatar: string;
+  name: string;
+}
+
 @Component({
   selector: 'app-user',
   standalone: true,
@@ -10,21 +25,33 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 export class UserComponent {
 
+  // APPROACH 2 & 3 TO ACCEPT AN OBJECT
+  @Input({required: true}) user!: User;
+
+  // APPROACH 1 TO ACCEPT AN OBJECT
+  // @Input({required: true}) user!: {
+  //   id: string;
+  //   avatar: string;
+  //   name: string;
+  // };
+
   // without signals: decorater Input
-  @Input({ required: true }) avatar!: string;
-  @Input({ required: true }) name!: string;
-  @Input({ required: true }) id!:string;
+  // @Input({ required: true }) avatar!: string;
+  // @Input({ required: true }) name!: string;
+  // @Input({ required: true }) id!:string;
+  @Output() selectedId = new EventEmitter<string>(); //isn't required to specify type
   // ! to convery that we know that the above var will have some value even if it looks like uninitialized
   // required true assures that the property must be set
 
-  @Output() selectedId = new EventEmitter();
+  // selectedId = output<string>();
+  // does not create a signal, creates a custom event, interchangable with event emmiter, just let us avoid decorators and shorten the len of code, is relatively new
 
   get imagePath() {
-    return 'assets/users/' + this.avatar;
+    return 'assets/users/' + this.user.avatar;
   }
 
   onclick() {
-    this.selectedId.emit(this.id);
+    this.selectedId.emit(this.user.id);
   }
 
   // // with signal: generic function input (work with broad variety of input type)

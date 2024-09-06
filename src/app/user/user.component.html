@@ -1,12 +1,12 @@
 <div>
     <button (click)="onclick()" > <!-- Event name -->
 
-        <img [src]="imagePath" [alt]="name"/> <!-- When accessing signal values, they should be called as functions -->
+        <img [src]="imagePath" [alt]="user.name"/> <!-- When accessing signal values, they should be called as functions -->
         
         <!--Property binder using string interpolation-->
         <!--<img [src]="'assets/users/'+selected.avatar" [alt]="selected.name"/>--> 
         
-        <span>{{name}}</span>
+        <span>{{user.name}}</span>
         
         <!-- 
             <div [attr.aria-valuenow]="currentVal"></div>
