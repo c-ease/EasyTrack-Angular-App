@@ -1,17 +1,19 @@
-<div>
-    <button (click)="onclick()" > <!-- Event name -->
+<app-card>
+    <!-- <div> -->
+        <button [class.active]="selected" (click)="onclick()" > <!-- Event name -->
 
-        <img [src]="imagePath" [alt]="user.name"/> <!-- When accessing signal values, they should be called as functions -->
-        
-        <!--Property binder using string interpolation-->
-        <!--<img [src]="'assets/users/'+selected.avatar" [alt]="selected.name"/>--> 
-        
-        <span>{{user.name}}</span>
-        
-        <!-- 
-            <div [attr.aria-valuenow]="currentVal"></div>
-            attr.<attribute name> tells angular to treat 'currentval' not as some existing property but 
-            bind the attribute dynamically
-        -->
-    </button>
-</div>
+            <img [src]="imagePath" [alt]="user.name"/> <!-- When accessing signal values, they should be called as functions -->
+            
+            <!--Property binder using string interpolation-->
+            <!--<img [src]="'assets/users/'+selected.avatar" [alt]="selected.name"/>--> 
+            
+            <span>{{user.name}}</span>
+            
+            <!-- 
+                <div [attr.aria-valuenow]="currentVal"></div>
+                attr.<attribute name> tells angular to treat 'currentval' not as some existing property but 
+                bind the attribute dynamically
+            -->
+        </button>
+    <!-- </div> -->
+</app-card>

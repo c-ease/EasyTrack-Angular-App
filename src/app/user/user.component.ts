@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, Output, output } from '@angular/core';
+import { User } from './user.model';
+import { CardComponent } from "../shared/card/card.component";
 // import { input, computed } from '@angular/core';
 
 // APPROACH 2 TO ACCEPT AN OBJECT: CAN DEFINE OBJECTS AS WELL AS OTHER DATA TYPES
@@ -9,16 +11,18 @@ import { Component, EventEmitter, Input, Output, output } from '@angular/core';
 // }
 
 // APPROACH 3 : CAN ONLY DEFINE OBJECTS
-interface User {
-  id: string;
-  avatar: string;
-  name: string;
-}
+// interface User {
+//   id: string;
+//   avatar: string;
+//   name: string;
+// }
+
+// APPROACH 4: DEFINE INTERFACES IN A SEPARATE .MODEL.TS FILE AND IMPORT
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [],
+  imports: [CardComponent],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })
@@ -45,6 +49,8 @@ export class UserComponent {
 
   // selectedId = output<string>();
   // does not create a signal, creates a custom event, interchangable with event emmiter, just let us avoid decorators and shorten the len of code, is relatively new
+
+  @Input({ required: true }) selected!: boolean;
 
   get imagePath() {
     return 'assets/users/' + this.user.avatar;
