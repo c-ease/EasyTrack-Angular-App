@@ -1,7 +1,10 @@
+// import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
+// import { AppModule } from "./app/app.module";
+
+// platformBrowserDynamic().bootstrapModule(AppModule);
+
+
+// Would work only if the AppComponent was a standalone component
 import { bootstrapApplication } from '@angular/platform-browser';
-
 import { AppComponent } from './app/app.component';
-//import { HeaderComponent } from './app/header.component';
-
 bootstrapApplication(AppComponent).catch((err) => console.error(err));
-//bootstrapApplication(HeaderComponent);    does not match component tree architecture
